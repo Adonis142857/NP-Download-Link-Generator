@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NP架构种子下载链接生成器</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        .input-box, .output-box {
+            resize: both;
+            overflow: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #000;
+        }
+        .output-box {
+            height: 200px;
+        }
+        /* 修改关闭按钮样式 */
+        .ui-dialog-titlebar-close {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <div class="container">
+        <h1 class="text-center my-4">NP架构种子下载链接生成器 - Adonis142857</h1>
+        <div class="form-group">
+            <label for="passkey">Passkey:</label>
+            <input type="text" class="form-control input-box" id="passkey" placeholder="Enter passkey">
+        </div>
+        <div class="form-group">
+            <label for="seedLinks">需要生成的种子链接（一行一个）：</label>
+            <textarea class="form-control input-box" id="seedLinks" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary" id="generate">生成下载链接</button>
+        <div class="form-group">
+            <label for="result">生成的种子链接：</label>
+            <textarea class="form-control output-box" id="result" rows="3" readonly></textarea>
+        </div>
+        <button class="btn btn-secondary float-right" id="showExample">填写提示</button>
+    </div>
+
+    <div id="dialog" title="填写提示" style="display: none;">
+        <p>生成规则举例1：</p>
+        <p>第一个框填写了“1aaa22”</p>
+        <p>第二个框填写了：</p>
+        <p>https://pt.com/details.php?id=101</p>
+        <p>https://pt.com/details.php?id=407</p>
+        <p>第三个框输出：</p>
+        <p>https://pt.com/download.php?id=101&passkey=1aaa22</p>
+        <p>https://pt.com/download.php?id=407&passkey=1aaa22</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".input-box, .output-box").resizable();
+            $("#dialog").dialog({
+                autoOpen: true,
+                draggable: true,
+                resizable: true,
+                width: 400,
+                height: 400
+            });
+            $("#showExample").click(function() {
+                $("#dialog").dialog("open");
+            });
+            $("#generate").click(function() {
+                var passkey = $("#passkey").val().trim();
+                var seedLinks = $("#seedLinks").val().trim().split("\n");
+                if (passkey === "" || seedLinks === "") {
+                    alert("请填写所有字段");
+                } else {
+                    var result = "";
+                    for (var i = 0; i < seedLinks.length; i++) {
+                        var link = seedLinks[i].replace("details.php", "download.php") + "&passkey=" + passkey;
+                        result += link + "\n";
+                    }
+                    $("#result").val(result.trim());
+                }
+            });
+        });
+    </script>
+</body>
+</html>
