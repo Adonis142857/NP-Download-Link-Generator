@@ -37,19 +37,18 @@
         </div>
         <button class="btn btn-primary" id="generate">生成下载链接</button>
         <div class="form-group">
-            <label for="result">生成的种子链接：</label>
+            <label for="result">生成的下载链接：</label>
             <textarea class="form-control output-box" id="result" rows="3" readonly></textarea>
         </div>
         <button class="btn btn-secondary float-right" id="showExample">填写提示</button>
     </div>
 
     <div id="dialog" title="填写提示" style="display: none;">
-        <p>生成规则举例1：</p>
-        <p>第一个框填写了“1aaa22”</p>
-        <p>第二个框填写了：</p>
+        <p>第一个框（Passkey）填写了“1aaa22”</p>
+        <p>第二个框（需要生成的种子链接）填写了：</p>
         <p>https://pt.com/details.php?id=101</p>
         <p>https://pt.com/details.php?id=407</p>
-        <p>第三个框输出：</p>
+        <p>第三个框（生成的下载链接）输出：</p>
         <p>https://pt.com/download.php?id=101&passkey=1aaa22</p>
         <p>https://pt.com/download.php?id=407&passkey=1aaa22</p>
     </div>
